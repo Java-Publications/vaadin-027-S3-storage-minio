@@ -96,6 +96,7 @@
 
     <!--RapidPM bundles-->
     <rapidpm-vaadin-addons.version>0.2.0</rapidpm-vaadin-addons.version>
+    <rapidpm-frp.version>0.5.2-SNAPSHOT</rapidpm-frp.version>
   </properties>
 
 
@@ -134,6 +135,11 @@
 
       <!--Project Stuff-->
 
+      <dependency>
+        <groupId>io.minio</groupId>
+        <artifactId>minio</artifactId>
+        <version>3.0.12</version>
+      </dependency>
 
       <!--RapidPM stuff  -->
       <dependency>
@@ -165,6 +171,12 @@
         <version>${rapidpm-vaadin-addons.version}</version>
       </dependency>
 
+
+      <dependency>
+        <groupId>org.rapidpm</groupId>
+        <artifactId>rapidpm-functional-reactive</artifactId>
+        <version>${rapidpm-frp.version}</version>
+      </dependency>
 
       <!--TDD tooling-->
 
@@ -205,6 +217,17 @@
       <artifactId>vaadin-push</artifactId>
     </dependency>
 
+
+    <dependency>
+      <groupId>io.minio</groupId>
+      <artifactId>minio</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.rapidpm</groupId>
+      <artifactId>rapidpm-functional-reactive</artifactId>
+    </dependency>
+
     <!--Vaadin Addons-->
     <dependency>
       <groupId>org.rapidpm</groupId>
@@ -235,6 +258,21 @@
     <dependency>
       <groupId>org.rapidpm</groupId>
       <artifactId>rapidpm-vaadin-addons-modules-container-initializer-rapidpm</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <!--<dependency>-->
+      <!--<groupId>com.github.docker-java</groupId>-->
+      <!--<artifactId>docker-java</artifactId>-->
+      <!--&lt;!&ndash; use latest version https://github.com/docker-java/docker-java/releases &ndash;&gt;-->
+      <!--<version>3.0.14</version>-->
+      <!--<scope>test</scope>-->
+    <!--</dependency>-->
+
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>testcontainers</artifactId>
+      <version>1.6.0</version>
       <scope>test</scope>
     </dependency>
 
