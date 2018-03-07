@@ -1,4 +1,4 @@
-package org.rapidpm.vaadin.server;
+package org.rapidpm.vaadin.ui.server;
 
 import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.annotations.Push;
