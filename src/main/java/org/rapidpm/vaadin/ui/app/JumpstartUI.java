@@ -39,6 +39,4 @@ public class JumpstartUI extends CoreUIService implements HasLogger {
       return new DashboardComponent().postConstruct();
     }
   }
-
-
 }
