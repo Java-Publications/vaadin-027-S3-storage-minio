@@ -6,8 +6,23 @@
 # How to connect a Vaadin App to a S3 Storage
 How to use Vaadin together with a Amazon S3 Compatible Cloud Storage 
 
-For the impatient: the corresponding 
+##For the impatient: 
+
+The corresponding 
 github repo ist here [https://github.com/Java-Publications/vaadin-027-S3-storage-minio](https://github.com/Java-Publications/vaadin-027-S3-storage-minio)
+
+To start and play with this demo, you have to go on command line to the folder 
+**_data** and start the S3 storage with **docker-compose up**
+
+After this is done you can go to the URL **localhost:9999** to login to your fresh S3 storage.
+The login details are **minio/minio123**
+
+To start the Vaadin app make a **mvn clean install** followed by starting the mainn method 
+of the class ```JumpstartUI```
+
+![_data/_images/Demo_Running_001.gif](_data/_images/Demo_Running_001.gif)
+
+
 
 ## Demo-App
 The demo App is a blob - storage based on the minio storage and the Vaadin Framework

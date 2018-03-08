@@ -22,22 +22,6 @@ import static org.rapidpm.vaadin.ui.server.imageservice.s3.MinioClientFunctions.
  */
 public class DashboardComponent extends Composite implements HasLogger {
 
-  /**
-   * Vaadin needed transformation
-   *
-   * @return
-   */
-  private BiFunction<InputStream, String, StreamResource> asStreamSource() {
-    return (is, fileName) -> new StreamResource(() -> is, fileName);
-  }
-
-  private Supplier<Coordinates> access() {
-    return () -> new Coordinates(accessPoint.getValue(),
-                                 accessKey.getValue(),
-                                 secKey.getValue()
-    );
-  }
-
   private final TextField accessPoint = new TextField("Access point");
   private final TextField accessKey   = new TextField("accessKey");
   private final TextField secKey      = new TextField("secKey");
@@ -52,18 +36,34 @@ public class DashboardComponent extends Composite implements HasLogger {
   );
 
   private Image  image      = new Image();
-  private Layout mainLayout = new VerticalLayout();
+  private Layout mainLayout = new VerticalLayout(layout, image);
+
+
+  public DashboardComponent() {
+    setCompositionRoot(mainLayout);
+  }
+
+
+  private BiFunction<InputStream, String, StreamResource> asStreamSource() {
+    return (is, fileName) -> new StreamResource(() -> is, fileName);
+  }
+
+  private Supplier<Coordinates> access() {
+    return () -> new Coordinates(accessPoint.getValue(),
+                                 accessKey.getValue(),
+                                 secKey.getValue()
+    );
+  }
 
   private Registration registration;
 
   public DashboardComponent postConstruct() {
+
     accessPoint.setValue("http://127.0.0.1:9999");
     accessKey.setValue("minio");
     secKey.setValue("minio123");
     bucketName.setValue(DEFAULT_BUCKET_NAME);
 
-    mainLayout.addComponents(layout, image);
-    setCompositionRoot(mainLayout);
     connect.addClickListener((Button.ClickListener) event -> {
       if (registration == null) {
         registration = register(imageID -> client()
