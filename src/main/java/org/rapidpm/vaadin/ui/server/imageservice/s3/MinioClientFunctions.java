@@ -1,12 +1,9 @@
-package org.rapidpm.vaadin.ui.server.imageservice.s3.minio;
+package org.rapidpm.vaadin.ui.server.imageservice.s3;
 
 import io.minio.MinioClient;
 import org.rapidpm.frp.functions.CheckedBiFunction;
 import org.rapidpm.frp.functions.CheckedFunction;
-import org.rapidpm.frp.model.Pair;
-import org.rapidpm.frp.model.Quad;
 import org.rapidpm.frp.model.Result;
-import org.rapidpm.vaadin.ui.server.imageservice.s3.Coordinates;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -16,6 +13,8 @@ import java.util.function.BiFunction;
  *
  */
 public interface MinioClientFunctions {
+
+  String DEFAULT_BUCKET_NAME = "images";
 
   static CheckedFunction<Coordinates, MinioClient> client() {
     return (coord) -> new MinioClient(coord.endpoint(),
@@ -44,45 +43,6 @@ public interface MinioClientFunctions {
       );
       return minioClient;
     };
-  }
-
-
-  class BlobCoordinates extends Pair<String, String> {
-
-    public BlobCoordinates(String bucketName, String objName) {
-      super(bucketName, objName);
-    }
-
-    public String bucketName() {
-      return getT1();
-    }
-
-    public String objectName() {
-      return getT2();
-    }
-  }
-
-  class Blob extends Quad<String, String, InputStream, String> {
-
-    public Blob(String bucketName, String objName, InputStream byteStream, String contentType) {
-      super(bucketName, objName, byteStream, contentType);
-    }
-
-    public String bucketName() {
-      return getT1();
-    }
-
-    public String objectName() {
-      return getT2();
-    }
-
-    public InputStream byteStream() {
-      return getT3();
-    }
-
-    public String contentType() {
-      return getT4();
-    }
   }
 
 

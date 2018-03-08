@@ -10,9 +10,15 @@ public class Coordinates extends Triple<String, String, String> {
     super(endpoint, accessKey, secretKey);
   }
 
-  public String endpoint() { return getT1(); }
+  public String endpoint() {
+    return getT1();
+  }
 
-  public String accessKey() { return getT2(); }
+  public String accessKey() {
+    return getT2();
+  }
 
-  public String secretKey() { return getT3(); }
+  public String secretKey() {
+    return getT3();
+  }
 }
