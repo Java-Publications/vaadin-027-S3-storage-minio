@@ -1,10 +1,5 @@
 package junit.org.rapidpm.vaadin.ui.app.minio;
 
-import com.github.dockerjava.api.DockerClient;
-import com.github.dockerjava.api.command.PullImageCmd;
-import com.github.dockerjava.core.DefaultDockerClientConfig;
-import com.github.dockerjava.core.DockerClientBuilder;
-import com.github.dockerjava.core.DockerClientConfig;
 import com.vaadin.server.StreamResource;
 import io.minio.MinioClient;
 import org.junit.jupiter.api.*;
@@ -12,8 +7,8 @@ import org.rapidpm.dependencies.core.logger.HasLogger;
 import org.rapidpm.frp.functions.CheckedBiFunction;
 import org.rapidpm.frp.model.Pair;
 import org.rapidpm.vaadin.ui.server.imageservice.s3.Coordinates;
-import org.rapidpm.vaadin.ui.server.imageservice.s3.minio.MinioClientFunctions;
-import org.testcontainers.containers.GenericContainer;
+import org.rapidpm.vaadin.ui.server.imageservice.s3.BlobCoordinates;
+import org.rapidpm.vaadin.ui.server.imageservice.s3.Blob;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -26,8 +21,8 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import static java.lang.System.nanoTime;
-import static org.rapidpm.vaadin.ui.app.DashboardComponent.DEFAULT_BUCKET_NAME;
-import static org.rapidpm.vaadin.ui.server.imageservice.s3.minio.MinioClientFunctions.*;
+import static org.rapidpm.vaadin.ui.server.imageservice.s3.MinioClientFunctions.DEFAULT_BUCKET_NAME;
+import static org.rapidpm.vaadin.ui.server.imageservice.s3.MinioClientFunctions.*;
 
 /**
  * docker pull minio/minio
@@ -90,10 +85,10 @@ public class MinioBasicTest implements HasLogger {
         .apply(access().get())
         .thenCombine(bucketName, bucket())
         .ifFailed(Assertions::fail)
-        .thenCombine(new MinioClientFunctions.Blob(bucketName,
-                                                   objectName,
-                                                   inputStreamHelloWorld,
-                                                   CONTENT_TYPE
+        .thenCombine(new Blob(bucketName,
+                              objectName,
+                              inputStreamHelloWorld,
+                              CONTENT_TYPE
                      ),
                      putObj()
         )
@@ -112,10 +107,10 @@ public class MinioBasicTest implements HasLogger {
         .apply(access().get())
         .thenCombine(bucketName, bucket())
         .ifFailed(Assertions::fail)
-        .thenCombine(new MinioClientFunctions.Blob(bucketName,
-                                                   objectName,
-                                                   inputStreamHelloWorld,
-                                                   CONTENT_TYPE
+        .thenCombine(new Blob(bucketName,
+                              objectName,
+                              inputStreamHelloWorld,
+                              CONTENT_TYPE
                      ),
                      putObj()
         )
