@@ -6,7 +6,7 @@
 # How to connect a Vaadin App to a S3 Storage
 How to use Vaadin together with a Amazon S3 Compatible Cloud Storage 
 
-##For the impatient: 
+## For the impatient: 
 
 The corresponding 
 github repo ist here [https://github.com/Java-Publications/vaadin-027-S3-storage-minio](https://github.com/Java-Publications/vaadin-027-S3-storage-minio)
