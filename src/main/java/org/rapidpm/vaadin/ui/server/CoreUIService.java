@@ -43,7 +43,7 @@ public class CoreUIService {
       final String className = System.getProperty(COMPONENT_SUPPLIER_TO_USE);
       logger().info("class to load : " + className);
       ((CheckedSupplier<Class<?>>) () -> forName(className))
-          .get()
+          .get() //TODO make it fault tolerant
           .flatMap((CheckedFunction<Class<?>, Object>) Class::newInstance)
           .flatMap((CheckedFunction<Object, ComponentSupplier>) ComponentSupplier.class::cast)
           .flatMap((CheckedFunction<ComponentSupplier, Component>) Supplier::get)

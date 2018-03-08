@@ -36,10 +36,7 @@ public class JumpstartUI extends CoreUIService implements HasLogger {
   public static class MySupplier implements CoreUIService.ComponentSupplier {
     @Override
     public Component get() {
-      final DashboardComponent components = new DashboardComponent();
-      //or done by CDI
-      components.postConstruct();
-      return components;
+      return new DashboardComponent().postConstruct();
     }
   }
 
