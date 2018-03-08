@@ -14,10 +14,10 @@ import static org.rapidpm.vaadin.ui.server.imageservice.ImageFunctions.nextImage
 /**
  *
  */
-public class BlobImagePushService {
+public class ImageTimerService {
 
 
-  private BlobImagePushService() {
+  private ImageTimerService() {
   }
 
   //TODO JVM static
@@ -40,23 +40,23 @@ public class BlobImagePushService {
     };
   }
 
-  //TODO run every 5 sec -> Timer
+  //TODO run every 2 sec -> Timer
   public static void updateImages() {
     // not nice coupled
     REGISTRY.forEach(e -> e.updateImage(nextImageName().get()));
   }
 
-  // TODO not nice
+  // TODO not perfect
   static {
     TIMER.scheduleAtFixedRate(
         new TimerTask() {
           @Override
           public void run() {
-            BlobImagePushService.updateImages();
+            ImageTimerService.updateImages();
           }
         },
         5_000,
-        5_000
+        2_000
     );
   }
 }
