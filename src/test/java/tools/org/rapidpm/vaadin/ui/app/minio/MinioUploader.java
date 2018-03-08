@@ -3,6 +3,7 @@ package tools.org.rapidpm.vaadin.ui.app.minio;
 import org.rapidpm.frp.functions.CheckedFunction;
 import org.rapidpm.frp.model.Result;
 import org.rapidpm.vaadin.ui.server.imageservice.s3.Coordinates;
+import org.rapidpm.vaadin.ui.server.imageservice.s3.Blob;
 
 import java.io.File;
 import java.nio.file.DirectoryStream;
@@ -14,8 +15,8 @@ import static java.lang.Boolean.TRUE;
 import static java.nio.file.Files.newDirectoryStream;
 import static java.nio.file.Files.newInputStream;
 import static java.nio.file.StandardOpenOption.READ;
-import static org.rapidpm.vaadin.ui.app.DashboardComponent.DEFAULT_BUCKET_NAME;
-import static org.rapidpm.vaadin.ui.server.imageservice.s3.minio.MinioClientFunctions.*;
+import static org.rapidpm.vaadin.ui.server.imageservice.s3.MinioClientFunctions.DEFAULT_BUCKET_NAME;
+import static org.rapidpm.vaadin.ui.server.imageservice.s3.MinioClientFunctions.*;
 
 /**
  *
@@ -27,7 +28,7 @@ public class MinioUploader {
 
   //TODO put here your target infos
   public static Supplier<Coordinates> access() {
-    return () -> new Coordinates("http://127.0.0.1:9001",
+    return () -> new Coordinates("http://127.0.0.1:9999",
                                  "minio",
                                  "minio123"
     );
